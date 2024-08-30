@@ -20,7 +20,11 @@ public class RobotContainer {
   private Joystick driver = new Joystick(SwerveConstants.DriverPort);
   private Cannon cannon = new Cannon();
   private JoystickButton compressButton = new JoystickButton(driver, XboxController.Button.kA.value);
-  private JoystickButton releaseButton = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+  private JoystickButton releaseButton = new JoystickButton(driver, XboxController.Button.kX.value);
+
+  private JoystickButton up = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+  private JoystickButton down = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+
   private int leftAxis = XboxController.Axis.kLeftY.value;
   private int rightAxis = XboxController.Axis.kRightY.value;
 
@@ -43,6 +47,11 @@ public class RobotContainer {
     compressButton.whileFalse(new InstantCommand(() -> cannon.compress(Value.kOff)));
     releaseButton.whileTrue(new InstantCommand(() -> cannon.hose(Value.kOn)));
     releaseButton.whileFalse(new InstantCommand(() -> cannon.hose(Value.kOff)));
+
+    up.onTrue(new InstantCommand(() -> cannon.pivot(-.4)));
+    up.onFalse(new InstantCommand(() -> cannon.pivot(0)));
+    down.onTrue(new InstantCommand(() -> cannon.pivot(.4)));
+    down.onFalse(new InstantCommand(() -> cannon.pivot(0)));
   }
 
   public Command getAutonomousCommand() {

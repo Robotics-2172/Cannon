@@ -12,5 +12,5 @@ public class CannonConstants {
     public static final int compressor2 = 2;
     public static final int gardenHose = 3;
 
-    public static final int pivot = 10;
+    public static final int pivot = 8;
 }

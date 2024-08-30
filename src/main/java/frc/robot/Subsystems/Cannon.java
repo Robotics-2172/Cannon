@@ -4,6 +4,7 @@
 
 package frc.robot.Subsystems;
 
+import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -27,7 +28,7 @@ public class Cannon extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    System.out.println(sensor.getValue());
+    //System.out.println(sensor.getValue());
   }
   public void compress(Value value){
     compressor1.set(value);
@@ -35,5 +36,8 @@ public class Cannon extends SubsystemBase {
   }
   public void hose(Value value){
     gardenHose.set(value);
+  }
+  public void pivot(double value){
+    pivot.set(VictorSPXControlMode.PercentOutput, value);
   }
 }
